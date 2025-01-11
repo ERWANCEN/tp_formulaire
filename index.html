@@ -4,11 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP-Formulaire</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Formulaire</h1>
-    <form action="">
-        <label for="nom"></label>
-    </form>
+    <div id="cercle_01"></div>
+    <div id="cercle_02"></div>
+    <div id="cercle_03"></div>
+    <div id="cercle_04"></div>
+    <div id="container">
+        <h1>Formulaire</h1>
+        <form action="" id="form">
+            <div id="partie_nom" class="inputs">
+                <div id="message_erreur_nom"></div>
+                <label for="nom">Nom</label>
+                <input id="nom" type="text" placeholder="Nom">
+            </div>
+
+            <div id="partie_prenom" class="inputs">
+                <div id="message_erreur_prenom" class="erreur_m_top"></div>
+                <label for="prenom">Prénom</label>
+                <input id="prenom" type="text" placeholder="Prénom">
+            </div>
+
+            <div id="partie_email" class="inputs">
+                <div id="message_erreur_email" class="erreur_m_top"></div>
+                <label for="email">Email</label>
+                <input id="email" type="text" placeholder="Email exemple : brouette@rateau.com">
+            </div>
+
+            <div id="partie_date" class="inputs">
+                <div id="message_erreur_date" class="erreur_m_top"></div>
+                <label for="date">Date</label>
+                <input id="date" type="date">
+            </div>
+
+            <div id="partie_mdp" class="inputs">
+                <div id="message_erreur_mdp" class="erreur_m_top"></div>
+                <label for="mdp">Mot de passe</label>
+                <input id="mdp" type="text">
+            </div>
+
+            <div id="partie_confirm_mdp" class="inputs">
+                <div id="message_erreur_confirm_mdp" class="erreur_m_top"></div>
+                <label for="confirm_mdp">Confirmation du mot de passe</label>
+                <input id="confirm_mdp" type="text">
+            </div>
+
+            <button id="bouton">Valider</button>
+        </form>
+    </div>
+    
+
+    <script src="app.js"></script>
 </body>
 </html>
