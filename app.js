@@ -23,6 +23,8 @@ let mdpErreur = document.getElementById('message_erreur_mdp');
 let confirmMdp = document.getElementById('confirm_mdp');
 let confirmMdpErreur = document.getElementById('message_erreur_confirm_mdp');
 
+let classErreur = document.getElementsByClassName('erreur');
+
 let success = document.getElementById('message_success');
 
 let erreur = [];
@@ -174,7 +176,7 @@ function afficherErreurConfirmMdp() {
 
 
 function erreurQuelquePart() {
-    if (detectionErreur === false) {
+    if (classErreur[0] == undefined) {
         success.innerHTML = 
             `
             <p id="success">Votre formulaire a bien été transmit</p>
@@ -234,58 +236,21 @@ bouton.addEventListener('click', (event) => {
 
 
 /**
- * Function permettant de vérifier différents critères lors de la saisie de la partie "Nom"
+ * Function permettant de vérifier différents critères lors de la saisie de la partie "Prénom"
  */
 function verificationsNom() {
 
-    switch (true) {
-        case (nom.value.trim().length < 5 || nom.value.trim().length > 15):
-            erreur.push('Votre nom doit contenir entre 5 et 15 caractères');
-            // console.log(erreur);
-            if (nom.value.trim().length > 0) {
-                for (let i = 0; i < nom.value.length; i++) {
-    
-                    if (nom.value[i] == 0 || nom.value[i] == 1 || nom.value[i] == 2 || nom.value[i] == 3 || nom.value[i] == 4 || nom.value[i] == 5 || nom.value[i] == 6 || nom.value[i] == 7 || nom.value[i] == 8 || nom.value[i] == 9) {
 
-                        erreur.push(' Votre nom ne doit pas contenir de chiffres');
-                        // console.log(erreur);
-                        
-                    }
-                    
-                }
-            }
-            erreursSansDoublons = [...new Set(erreur)];
-            // console.log(erreursSansDoublons);
-            erreurTypeString = erreursSansDoublons.toString();
-            // console.log(erreurTypeString);
-            break;
-
-        case (nom.value.trim().length >= 5 || nom.value.trim().length <= 15):
-
-            for (let i = 0; i < nom.value.length; i++) {
-
-                if (nom.value[i] == '0' || nom.value[i] == '1' || nom.value[i] == '2' || nom.value[i] == '3' || nom.value[i] == '4' || nom.value[i] == '5' || nom.value[i] == '6' || nom.value[i] == '7' || nom.value[i] == '8' || nom.value[i] == '9') {
-
-                    erreur.push('Votre nom ne doit pas contenir de chiffres');
-                    // console.log(erreur);
-                    
-                }
-                
-            }
-            erreursSansDoublons = [...new Set(erreur)];
-            erreurTypeString = erreursSansDoublons.toString();
-            // console.log(erreurTypeString);
-            break;
-        
-        default:
-            erreur.push('Une erreur est survenue lors de la saisie de votre nom, merci de réecrir votre nom');
-
-            erreursSansDoublons = [...new Set(erreur)];
-            erreurTypeString = erreursSansDoublons.toString();
-            // console.log(erreurTypeString);
-            break;
-
+    if (nom.value.trim().length < 5 || nom.value.trim().length > 15){
+        erreur.push('Votre nom doit contenir entre 5 et 15 caractères');
     }
+
+    if (/\d/.test(nom.value.trim())) {
+        erreur.push('Votre nom ne doit pas contenir de chiffres');
+    }
+        
+        erreursSansDoublons = [...new Set(erreur)];
+        erreurTypeString = erreursSansDoublons.toString();
 
 }
 
@@ -295,57 +260,19 @@ function verificationsNom() {
  * Function permettant de vérifier différents critères lors de la saisie de la partie "Prénom"
  */
 function verificationsPrenom() {
-    console.log('coucouuu');
 
-    switch (true) {
-        case (prenom.value.trim().length < 5 || prenom.value.trim().length > 15):
-            erreur.push('Votre prénom doit contenir entre 5 et 15 caractères');
-            // console.log(erreur);
-            if (prenom.value.trim().length > 0) {
-                for (let i = 0; i < prenom.value.length; i++) {
-                    
-    
-                    if (prenom.value[i] == 0 || prenom.value[i] == 1 || prenom.value[i] == 2 || prenom.value[i] == 3 || prenom.value[i] == 4 || prenom.value[i] == 5 || prenom.value[i] == 6 || prenom.value[i] == 7 || prenom.value[i] == 8 || prenom.value[i] == 9) {
 
-                        erreur.push(' Votre prénom ne doit pas contenir de chiffres');
-                        // console.log(erreur);
-                        
-                    }
-                }
-            }
-
-            erreursSansDoublons = [...new Set(erreur)];
-            // console.log(erreursSansDoublons);
-            erreurTypeString = erreursSansDoublons.toString();
-            // console.log(erreurTypeString);
-            break;
-
-        case (prenom.value.trim().length >= 5 || prenom.value.trim().length <= 15):
-
-            for (let i = 0; i < prenom.value.length; i++) {
-
-                if (prenom.value[i] == '0' || prenom.value[i] == '1' || prenom.value[i] == '2' || prenom.value[i] == '3' || prenom.value[i] == '4' || prenom.value[i] == '5' || prenom.value[i] == '6' || prenom.value[i] == '7' || prenom.value[i] == '8' || prenom.value[i] == '9') {
-
-                    erreur.push('Votre prénom ne doit pas contenir de chiffres');
-                    // console.log(erreur);
-                    
-                }
-            }
-
-            erreursSansDoublons = [...new Set(erreur)];
-            erreurTypeString = erreursSansDoublons.toString();
-            // console.log(erreurTypeString);
-            break;
-        
-        default:
-            erreur.push('Une erreur est survenue lors de la saisie de votre prénom, merci de réécrie votre prénom');
-            
-            erreursSansDoublons = [...new Set(erreur)];
-            erreurTypeString = erreursSansDoublons.toString();
-            // console.log(erreurTypeString);
-            break;
-
+    if (prenom.value.trim().length < 5 || prenom.value.trim().length > 15){
+        erreur.push('Votre prénom doit contenir entre 5 et 15 caractères');
     }
+
+    if (/\d/.test(prenom.value.trim())) {
+        erreur.push('Votre prénom ne doit pas contenir de chiffres');
+    }
+        
+        erreursSansDoublons = [...new Set(erreur)];
+        erreurTypeString = erreursSansDoublons.toString();
+
 }
 
 
@@ -392,9 +319,6 @@ function verificationsEmail() {
  * Function permettant de vérifier différents critères lors de la saisie de la partie "Date"
  */
 function verificationsDate() {
-
-    console.log(date.valueAsDate);
-    console.log(date.value);
 
     if (date.valueAsDate == null) {
         erreur.push('Veuillez sélectionner une date');
