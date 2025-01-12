@@ -13,6 +13,11 @@ function afficherErreur() {
             `
             <p class="erreur">${erreurTypeString}</p>
             `
+    } else {
+        nomErreur.innerHTML = 
+            `
+            <p></p>
+            `
     }
 }
 
@@ -34,35 +39,11 @@ bouton.addEventListener('click', (event) => {
 
 
 
-
+/**
+ * Function permettant de vérifier différents critères lors de la saisie de la partie "nom"
+ */
 
 function verificationsNom() {
-
-    // if (nom.value.trim().length > 0) {
-    //     // let verifierPresenceChiffre = nom.value.split('');
-    //     // console.log(verifierPresenceChiffre);
-
-    //     for (let i = 0; i < nom.value.length; i++) {
-    //         console.log(nom.value[i]);
-            
-    //         // return nom.value[i];
-    //         // console.log(nom.value[i]);
-    //         // console.log(typeof nom.value[i]);
-    //         // console.log(typeof parseInt(nom.value[i]));
-    //         // console.log(typeof nom.value[i]);
-            
-
-    //         // if (typeof parseInt(nom.value[i]) !== 'NaN') {
-    //         //     erreur += 'Votre nom ne doit pas comporter de chiffres. ';
-    //         // }
-            
-    //         if (nom.value[i] == 0 || nom.value[i] == 1 || nom.value[i] == 2 || nom.value[i] == 3 || nom.value[i] == 4 || nom.value[i] == 5 || nom.value[i] == 6 || nom.value[i] == 7 || nom.value[i] == 8 || nom.value[i] == 9) {
-    //             erreur += 'Votre nom ne doit pas comporter de chiffres. '
-    //         }
-
-    //     }
-    // }
-    
 
     switch (true) {
         case (nom.value.trim().length < 5):
@@ -73,6 +54,7 @@ function verificationsNom() {
                     
     
                     if (nom.value[i] == 0 || nom.value[i] == 1 || nom.value[i] == 2 || nom.value[i] == 3 || nom.value[i] == 4 || nom.value[i] == 5 || nom.value[i] == 6 || nom.value[i] == 7 || nom.value[i] == 8 || nom.value[i] == 9) {
+
                         erreur.push(' Votre nom ne doit pas comporter de chiffres');
                         // console.log(erreur);
                         
@@ -94,6 +76,7 @@ function verificationsNom() {
                     
     
                     if (nom.value[i] == 0 || nom.value[i] == 1 || nom.value[i] == 2 || nom.value[i] == 3 || nom.value[i] == 4 || nom.value[i] == 5 || nom.value[i] == 6 || nom.value[i] == 7 || nom.value[i] == 8 || nom.value[i] == 9) {
+
                         erreur.push(' Votre nom ne doit pas comporter de chiffres');
                         // console.log(erreur);
                         
@@ -106,11 +89,12 @@ function verificationsNom() {
             // console.log(erreurTypeString);
             break;
 
-        case (nom.value.trim().length > 4):
+        case (nom.value.trim().length >= 5 || nom.value.trim().length <= 15):
 
             for (let i = 0; i < nom.value.length; i++) {
 
                 if (nom.value[i] == '0' || nom.value[i] == '1' || nom.value[i] == '2' || nom.value[i] == '3' || nom.value[i] == '4' || nom.value[i] == '5' || nom.value[i] == '6' || nom.value[i] == '7' || nom.value[i] == '8' || nom.value[i] == '9') {
+
                     erreur.push('Votre nom ne doit pas comporter de chiffres');
                     // console.log(erreur);
                     
@@ -119,7 +103,7 @@ function verificationsNom() {
             }
             erreursSansDoublons = [...new Set(erreur)];
             erreurTypeString = erreursSansDoublons.toString();
-            console.log(erreurTypeString);
+            // console.log(erreurTypeString);
             break;
     }
 
