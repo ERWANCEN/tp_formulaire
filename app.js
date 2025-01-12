@@ -17,9 +17,18 @@ let dateErreur = document.getElementById('message_erreur_date');
 let adresse = document.getElementById('adresse');
 let adresseErreur = document.getElementById('message_erreur_adresse');
 
+let mdp = document.getElementById('mdp');
+let mdpErreur = document.getElementById('message_erreur_mdp');
+
+let confirmMdp = document.getElementById('confirm_mdp');
+let confirmMdpErreur = document.getElementById('message_erreur_confirm_mdp');
+
+let success = document.getElementById('message_success');
+
 let erreur = [];
 let erreurTypeString = '';
 let erreursSansDoublons = [];
+let detectionErreur = false;
 
 
 
@@ -33,6 +42,7 @@ function afficherErreurNom() {
             `
             <p class="erreur">${erreurTypeString}</p>
             `
+        detectionErreur = true;
     } else {
         nomErreur.innerHTML = 
             `
@@ -52,6 +62,7 @@ function afficherErreurPrenom() {
             `
             <p class="erreur">${erreurTypeString}</p>
             `
+        detectionErreur = true;
     } else {
         prenomErreur.innerHTML = 
             `
@@ -71,6 +82,7 @@ function afficherErreurEmail() {
             `
             <p class="erreur">${erreurTypeString}</p>
             `
+        detectionErreur = true;
     } else {
         emailErreur.innerHTML = 
             `
@@ -90,6 +102,7 @@ function afficherErreurDate() {
             `
             <p class="erreur">${erreurTypeString}</p>
             `
+        detectionErreur = true;
     } else {
         dateErreur.innerHTML = 
             `
@@ -109,10 +122,62 @@ function afficherErreurAdresse() {
             `
             <p class="erreur">${erreurTypeString}</p>
             `
+        detectionErreur = true;
     } else {
         adresseErreur.innerHTML = 
             `
             <p></p>
+            `
+    }
+}
+
+
+
+/**
+ * Fonction permettant l'affichage des erreurs liées au mot de passe
+ */
+function afficherErreurMdp() {
+    if(erreurTypeString.length > 0){
+        mdpErreur.innerHTML = 
+            `
+            <p class="erreur">${erreurTypeString}</p>
+            `
+        detectionErreur = true;
+    } else {
+        mdpErreur.innerHTML = 
+            `
+            <p></p>
+            `
+    }
+}
+
+
+
+/**
+ * Fonction permettant l'affichage des erreurs liées à la confirmation du mot de passe
+ */
+function afficherErreurConfirmMdp() {
+    if(erreurTypeString.length > 0){
+        confirmMdpErreur.innerHTML = 
+            `
+            <p class="erreur">${erreurTypeString}</p>
+            `
+        detectionErreur = true;
+    } else {
+        confirmMdpErreur.innerHTML = 
+            `
+            <p></p>
+            `
+    }
+}
+
+
+
+function erreurQuelquePart() {
+    if (detectionErreur === false) {
+        success.innerHTML = 
+            `
+            <p id="success">Votre formulaire a bien été transmit</p>
             `
     }
 }
@@ -153,6 +218,16 @@ bouton.addEventListener('click', (event) => {
     verificationsAdresse();
     afficherErreurAdresse();
     refreshErreur();
+
+    verificationsMdp();
+    afficherErreurMdp();
+    refreshErreur();
+
+    verificationsConfirmMdp();
+    afficherErreurConfirmMdp();
+    refreshErreur();
+
+    erreurQuelquePart();
     
 })
 
@@ -364,6 +439,40 @@ function verificationsAdresse() {
         
     }
     
+    erreursSansDoublons = [...new Set(erreur)];
+    erreurTypeString = erreursSansDoublons.toString();
+}
+
+
+
+/**
+ * Function permettant de vérifier différents critères lors de la saisie de la partie "Mot de passe"
+ */
+function verificationsMdp() {
+
+    if (mdp.value.length < 8) {
+        erreur.push("Le mot de passe doit contenir au moins 8 caractères");
+    }
+
+    erreursSansDoublons = [...new Set(erreur)];
+    erreurTypeString = erreursSansDoublons.toString();
+}
+
+
+
+/**
+ * Function permettant de vérifier différents critères lors de la saisie de la partie "Confirmation mot de passe"
+ */
+function verificationsConfirmMdp() {
+
+    if (confirmMdp.value.length < 8) {
+        erreur.push("Le mot de passe doit contenir au moins 8 caractères");
+    }
+
+    if (confirmMdp.value !== mdp.value) {
+        erreur.push("La confirmation du mot de passe doit être identique au mot de passe");
+    }
+
     erreursSansDoublons = [...new Set(erreur)];
     erreurTypeString = erreursSansDoublons.toString();
 }

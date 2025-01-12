@@ -81,7 +81,7 @@ button:hover {
     border-radius: 50%;
     position: absolute;
     top: 700px;
-    right: -150px;
+    right: -180px;
     overflow: hidden;
 }
 
@@ -111,6 +111,12 @@ button:hover {
 
 .erreur {
     background: #ff4848;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#success {
+    background: #4aff4a;
     border-radius: 5px;
     padding: 10px;
 }
