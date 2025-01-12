@@ -174,7 +174,9 @@ function afficherErreurConfirmMdp() {
 }
 
 
-
+/**
+ * Fonction permettant de vérifier si une erreur est présente dans le formulaire. Si oui, le formulaire n'est pas soumit, si non, il l'est
+ */
 function erreurQuelquePart() {
     if (classErreur[0] == undefined) {
         success.innerHTML = 
